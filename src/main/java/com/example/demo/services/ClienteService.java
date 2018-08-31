@@ -11,20 +11,20 @@ public class ClienteService {
     @Autowired
     ClienteRepository clienteRepository;
 
-    void cadastrarCliente(Cliente cli) {
-
+    public void cadastrarCliente(Cliente cli) {
+        clienteRepository.save(cli);
     }
 
-    void editarCliente(Cliente cli) {
-
+    public void editarCliente(Cliente cli) {
+        clienteRepository.save(cli);
     }
 
-    void excluirCliente(Long id) {
-
+   public void excluirCliente(Long id) {
+        clienteRepository.deleteById(id);
     }
 
-    void buscaCliente(Long id) {
-
+   public Cliente buscaCliente(Long id) {
+        return clienteRepository.findById(id).get();
     }
 
 }
