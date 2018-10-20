@@ -8,8 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 @Entity
 public class Produto {
@@ -63,7 +63,8 @@ public class Produto {
         this.custo = custo;
     }
 
-
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name="categoria")
     public Categoria getCategoria() {
         return categoria;
     }
@@ -83,8 +84,8 @@ public class Produto {
         this.quantidade = quantidade;
     }
 
-    @OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name="produto")
+    @OneToMany(cascade = CascadeType.PERSIST)
+    @JoinColumn(name="imagem")
     public Collection<Imagem> getImagens() {
         return imagens;
     }

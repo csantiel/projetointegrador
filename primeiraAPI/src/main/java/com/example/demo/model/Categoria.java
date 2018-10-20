@@ -38,7 +38,7 @@ class Categoria {
     }
 
     @OneToMany(cascade = CascadeType.PERSIST)
-    @JoinColumn(name="categoria")
+    @JoinColumn(name="produtos")
     public Collection<Produto> getProdutos() {
         return produtos;
     }
