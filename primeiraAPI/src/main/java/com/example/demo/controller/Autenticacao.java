@@ -1,15 +1,14 @@
-
 package com.example.demo.controller;
-
 
 import com.example.demo.model.Cliente;
 import com.example.demo.services.ClienteService;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.security.Keys;
+import java.security.Key;
 import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.QueryLookupStrategy.Key;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
