@@ -27,4 +27,8 @@ public class ClienteService {
         return clienteRepository.findById(id).get();
     }
 
+    public Cliente autenticarCliente(Cliente cli) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

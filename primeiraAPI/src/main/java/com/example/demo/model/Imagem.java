@@ -7,7 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-class Imagem {
+public class Imagem {
     
     private long id;
     private String nome;

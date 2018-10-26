@@ -11,7 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 @Entity
-class Categoria {
+public class Categoria {
     private long id;
     private String nome;
     private Collection<Produto> produtos;

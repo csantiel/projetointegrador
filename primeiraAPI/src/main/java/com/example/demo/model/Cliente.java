@@ -14,7 +14,7 @@ public class Cliente {
 
     private Long id;
     private String nome;
-    private List<Telefone> listaTelefone;
+    private String telefone;
     private String email;
     private String senha;
 
@@ -38,12 +38,12 @@ public class Cliente {
 
     @OneToMany(cascade = CascadeType.PERSIST)
     @JoinColumn(name="cliente")
-    public List<Telefone> getListaTelefone() {
-        return listaTelefone;
+    public String getListaTelefone() {
+        return telefone;
     }
 
-    public void setListaTelefone(List<Telefone> listaTelefone) {
-        this.listaTelefone = listaTelefone;
+    public void setListaTelefone(String telefone) {
+        this.telefone = telefone;
     }
 
 
