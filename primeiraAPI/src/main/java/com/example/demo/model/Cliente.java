@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import java.util.Collection;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,7 +14,7 @@ public class Cliente {
 
     private Long id;
     private String nome;
-    private String telefone;
+    private Collection<Telefone> telefone;
     private String email;
     private String senha;
 
@@ -37,11 +38,11 @@ public class Cliente {
 
     @OneToMany(cascade = CascadeType.PERSIST)
     @JoinColumn(name="cliente")
-    public String getListaTelefone() {
+    public Collection<Telefone> getListaTelefone() {
         return telefone;
     }
 
-    public void setListaTelefone(String telefone) {
+    public void setListaTelefone(Collection<Telefone> telefone) {
         this.telefone = telefone;
     }
 
