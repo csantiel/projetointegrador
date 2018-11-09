@@ -28,7 +28,7 @@ public class ClienteService {
     }
 
     public Cliente autenticarCliente(Cliente cli) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return clienteRepository.findByEmailAndSenha(cli.getEmail(), cli.getSenha());
     }
 
 }
