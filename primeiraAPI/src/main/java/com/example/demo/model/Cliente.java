@@ -2,19 +2,24 @@ package com.example.demo.model;
 
 import java.util.Collection;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;;
+import javax.persistence.OneToMany;import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+;
 
 @Entity
+@Table(uniqueConstraints={@UniqueConstraint(columnNames={"email"})})
 public class Cliente {
 
     private Long id;
     private String nome;
     private Collection<Telefone> telefone;
+    @Column(unique=true)
     private String email;
     private String senha;
 

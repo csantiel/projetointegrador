@@ -11,5 +11,4 @@ import org.springframework.web.bind.annotation.RestController;
 public class Autenticacao {
     public static final Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
     
-    
 }
