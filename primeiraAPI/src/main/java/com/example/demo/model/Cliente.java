@@ -8,18 +8,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
-;
+import javax.persistence.OneToMany;
 
 @Entity
-@Table(uniqueConstraints={@UniqueConstraint(columnNames={"email"})})
 public class Cliente {
-
     private Long id;
     private String nome;
     private Collection<Telefone> telefone;
-    @Column(unique=true)
     private String email;
     private String senha;
 
@@ -51,7 +46,7 @@ public class Cliente {
         this.telefone = telefone;
     }
 
-
+    @Column(unique=true)
     public String getEmail() {
         return email;
     }
