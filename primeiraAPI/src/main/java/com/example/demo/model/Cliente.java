@@ -14,7 +14,7 @@ import javax.persistence.OneToMany;
 public class Cliente {
     private Long id;
     private String nome;
-    private Collection<Telefone> telefone;
+    private Collection<Telefone> listaTelefone;
     private String email;
     private String senha;
 
@@ -39,11 +39,11 @@ public class Cliente {
     @OneToMany(cascade = CascadeType.PERSIST)
     @JoinColumn(name="cliente")
     public Collection<Telefone> getListaTelefone() {
-        return telefone;
+        return listaTelefone;
     }
 
     public void setListaTelefone(Collection<Telefone> telefone) {
-        this.telefone = telefone;
+        this.listaTelefone = telefone;
     }
 
     @Column(unique=true)
