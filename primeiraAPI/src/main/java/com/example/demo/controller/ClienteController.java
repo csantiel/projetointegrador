@@ -44,11 +44,12 @@ public class ClienteController {
         jwtBuilder.setSubject(cliAuth.getNome());
         jwtBuilder.setExpiration(new Date(System.currentTimeMillis()+10*60*1000));
         jwtBuilder.signWith(Autenticacao.key);
+        System.out.println("Cliente logou!");
         
         String token = jwtBuilder.compact();
         
         HttpHeaders headers = new HttpHeaders();
-        headers.add("Authorization", "Bearer"+token);
+        headers.add("Authorization", "Bearer "+token);
         
        return new ResponseEntity<>(headers, HttpStatus.OK);
     }
