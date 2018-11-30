@@ -14,9 +14,11 @@ import javax.persistence.OneToMany;
 public class Cliente {
     private Long id;
     private String nome;
-    private Collection<Telefone> telefone;
+    private Collection<Telefone> listaTelefone;
     private String email;
     private String senha;
+    private String sexo;
+    private String dataNascimento;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,11 +41,11 @@ public class Cliente {
     @OneToMany(cascade = CascadeType.PERSIST)
     @JoinColumn(name="cliente")
     public Collection<Telefone> getListaTelefone() {
-        return telefone;
+        return listaTelefone;
     }
 
     public void setListaTelefone(Collection<Telefone> telefone) {
-        this.telefone = telefone;
+        this.listaTelefone = telefone;
     }
 
     @Column(unique=true)
@@ -64,5 +66,21 @@ public class Cliente {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public String getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
+
+    public String getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(String dataNascimento) {
+        this.dataNascimento = dataNascimento;
     }
 }
