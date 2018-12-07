@@ -4,14 +4,19 @@ import com.example.demo.model.FileStorageProperties;
 import com.example.demo.model.Imagem;
 import com.example.demo.model.Produto;
 import com.example.demo.repository.ImagemRepository;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.time.LocalDateTime;
+import java.util.NoSuchElementException;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -42,13 +47,13 @@ public class ImagemService {
     }
     
     private String generateUUIDandExtension(MultipartFile file) throws IOException {
-        String fullname = file.getOringinalFilename();
+        String fullname = file.getOriginalFilename();
         String ext = "";
         
         int i = fullname.lastIndexOf('.');
         
         if(i == -1){
-            throws new IOException ("Arquivo sem extensão valida");
+            throw new IOException ("Arquivo sem extensão valida");
             
         }
         if(i >= 0){
@@ -60,12 +65,12 @@ public class ImagemService {
     public void storeImagem(MultipartFile file, Produto p) throws IOException {
         String relativePath = generatePath ()+ generateUUIDandExtension(file);
         Path absolutePath;
-        absolutePath = Path.get(
+        absolutePath = Paths.get(
         fileStorageLocation.toString()
         +relativePath).toAbsolutePath().normalize();
         
         try{
-            Files.createDiretories(absolutePath);
+            Files.createDirectories(absolutePath);
             Files.copy(file.getInputStream(),absolutePath, StandardCopyOption.REPLACE_EXISTING);
             
             Imagem img = new Imagem();
@@ -76,6 +81,27 @@ public class ImagemService {
         } catch (IOException e){
             System.out.println("Erro: "+e);
         }
+    }
+    
+    public Resource carregaImgId(Long id) throws FileNotFoundException{
+        Imagem img = imagemRepository.findById(id).get();
+        
+        try{
+            if(img == null){
+                throw new FileNotFoundException("Arquivo nao encontrado");
+            }
+            Path imgpath = Paths.get(fileStorageLocation.toString()+img.getPatch()).toAbsolutePath().normalize();
+            
+            Path fullPath = this.fileStorageLocation.resolve(imgpath).normalize();
+            
+            Resource resource = new UrlResource(fullPath.toUri());
+            if(resource.exists()){
+                return resource;
+            }
+        } catch (NoSuchElementException | MalformedURLException e){
+            throw new FileNotFoundException("Arquivo não encontrado");
+        }
+        throw new FileNotFoundException("Arquivo nao encontrado");
     }
     
     public void cadastrarImagem(Imagem imag) {

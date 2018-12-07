@@ -15,10 +15,13 @@ import javax.persistence.OneToOne;
 @Entity
 public class Venda {
     private Long id;
-    private Collection<Produto> produtos;
-    private Cliente cliente;
     private Date data;
+    private Cliente cliente;
     private double valor;
+    private Collection<ItensVenda> itensVenda;
+    
+    
+    
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,14 +35,14 @@ public class Venda {
     }
 
     @ManyToMany(cascade = CascadeType.PERSIST)
-    @JoinColumn(name="produtos")
-    public Collection<Produto> getProdutos() {
-        return produtos;
+    @JoinColumn(name="itensVenda")
+    public Collection<ItensVenda> getItensVenda() {
+        return itensVenda;
     }
 
 
-    public void setProdutos(Collection<Produto> produtos) {
-        this.produtos = produtos;
+    public void setItensVenda(Collection<ItensVenda> itensVenda) {
+        this.itensVenda = itensVenda;
     }
 
     @OneToOne(cascade = CascadeType.PERSIST)

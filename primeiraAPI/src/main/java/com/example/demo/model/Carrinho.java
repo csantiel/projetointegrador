@@ -15,20 +15,20 @@ import javax.persistence.OneToOne;
 @Entity
 public class Carrinho {
     private long id;
-    private Collection<Produto> produtos;
+    private Collection<ItensCarrinho> itens;
     private Date expireTime;
     private Cliente cliente;
     
     
     @OneToMany(cascade = CascadeType.PERSIST)
-    @JoinColumn(name="produtos")
-    public Collection<Produto> getProdutos() {
-        return produtos;
+    @JoinColumn(name="itens")
+    public Collection<ItensCarrinho> getItens() {
+        return itens;
     }
 
 
-    public void setProdutos(Collection<Produto> produtos) {
-        this.produtos = produtos;
+    public void setItens(Collection<ItensCarrinho> itens) {
+        this.itens = itens;
     }
 
 
@@ -49,23 +49,17 @@ public class Carrinho {
         return cliente;
     }
 
-    /**
-     * @param id the id to set
-     */
+
     public void setId(long id) {
         this.id = id;
     }
 
-    /**
-     * @param expireTime the expireTime to set
-     */
+
     public void setExpireTime(Date expireTime) {
         this.expireTime = expireTime;
     }
 
-    /**
-     * @param cliente the cliente to set
-     */
+
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
