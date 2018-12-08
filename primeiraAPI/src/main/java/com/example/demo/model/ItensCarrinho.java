@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 @Entity
 class ItensCarrinho {
@@ -27,7 +28,7 @@ class ItensCarrinho {
         this.id = id;
     }
 
-    @ManyToMany(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name="produto")
     public Produto getProdutos() {
         return produtos;
@@ -48,7 +49,7 @@ class ItensCarrinho {
         this.quantidade = quantidade;
     }
 
-    @ManyToMany(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name="carrinho")
     public Carrinho getCarrinho() {
         return carrinho;

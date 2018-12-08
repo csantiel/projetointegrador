@@ -1,12 +1,17 @@
 package com.example.demo.model;
 
 import java.net.URI;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 
-
+@ConfigurationProperties(prefix="file")
 public class FileStorageProperties {
-
-    public URI getUploadDir() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private String uploadDir;
+    
+    public String getUploadDir() {
+        return uploadDir;
+    }
+    public void setUploadDir(String uploadDir){
+        this.uploadDir = uploadDir;
     }
     
 }
