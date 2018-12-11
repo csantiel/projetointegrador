@@ -11,7 +11,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity
-class ItensCarrinho {
+public class ItensCarrinho {
     private Long id;
     private Produto produtos;
     private double quantidade;
