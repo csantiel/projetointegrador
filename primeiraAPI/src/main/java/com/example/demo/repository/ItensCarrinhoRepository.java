@@ -6,5 +6,5 @@ import org.springframework.data.repository.query.Param;
 
 
 public interface ItensCarrinhoRepository extends JpaRepository<ItensCarrinho, Long>{
-    public ItensCarrinho findById (@Param("id")String nome);
+    public ItensCarrinho findById (@Param("id")long id);
 }

@@ -73,8 +73,9 @@ public class ImagemService {
             Files.createDirectories(absolutePath);
             Files.copy(file.getInputStream(),absolutePath, StandardCopyOption.REPLACE_EXISTING);
             
+            //Nos slides é mostrado o método setPatch, porém no diagrama a variavel é path, logo acredito que o metodo tenha o nome errado
             Imagem img = new Imagem();
-            img.setPatch(relativePath);
+            img.setPath(relativePath);
             img.setProduto(p);
             
             imagemRepository.save(img);   
@@ -90,7 +91,7 @@ public class ImagemService {
             if(img == null){
                 throw new FileNotFoundException("Arquivo nao encontrado");
             }
-            Path imgpath = Paths.get(fileStorageLocation.toString()+img.getPatch()).toAbsolutePath().normalize();
+            Path imgpath = Paths.get(fileStorageLocation.toString()+img.getPath()).toAbsolutePath().normalize();
             
             Path fullPath = this.fileStorageLocation.resolve(imgpath).normalize();
             

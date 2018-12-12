@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
 
 public interface ImagemRepository extends JpaRepository<Imagem, Long> {
-    public Imagem findByNome (@Param("nome")String nome);
+    public Imagem findById (@Param("id")long id);
 }

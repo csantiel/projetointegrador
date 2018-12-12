@@ -7,5 +7,5 @@ import org.springframework.data.repository.query.Param;
 
 
 public interface ItensVendaRepository extends JpaRepository<ItensVenda, Long>{
-    public ItensVenda findByNome (@Param("nome")String nome);
+    public ItensVenda findById (@Param("id")long id);
 }

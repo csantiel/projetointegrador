@@ -56,16 +56,16 @@ public class ClienteController {
     
     @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
     void removerCliente(@PathVariable Long id) {
-        System.out.println("apaga cliente" + id);
+        clienteService.excluirCliente(id);
     }
     
     @RequestMapping(method = RequestMethod.PUT)
-    void editarCliente() {
-        System.out.println("edita");
+    void editarCliente(Cliente cli) {
+        clienteService.editarCliente(cli);
     }
     
     @RequestMapping(method = RequestMethod.GET)
-    void mostraCliente() {
-        System.out.println("mostra");
+    void mostraCliente(Long id) {
+        clienteService.buscaCliente(id);
     }
 }

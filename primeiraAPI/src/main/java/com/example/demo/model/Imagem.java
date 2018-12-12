@@ -12,7 +12,7 @@ import javax.persistence.ManyToOne;
 public class Imagem {
     
     private long id;
-    private String pach;
+    private String path;
     private Produto produto;
 
     @Id
@@ -25,26 +25,23 @@ public class Imagem {
     public void setId(long id) {
         this.id = id;
     }
-
-
-   
-
-    public void setPatch(String relativePath) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+    public String getPath() {
+        return path;
     }
 
-    public void setProduto(Produto p) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void setPath(String path) {
+        this.path = path;
     }
-
-    public String getPatch() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+    
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name="produto") 
     public Produto getProduto() {
         return produto;
+    }
+
+    public void setProduto(Produto produto) {
+        this.produto = produto;
     }
     
 }
