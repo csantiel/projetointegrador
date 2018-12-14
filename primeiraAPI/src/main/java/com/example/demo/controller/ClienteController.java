@@ -25,9 +25,7 @@ public class ClienteController {
     
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity cadastrarCliente(@RequestBody Cliente cli) {
-        System.out.println("Cliente cadastrado!");
         clienteService.cadastrarCliente(cli);
-        
         return new ResponseEntity(HttpStatus.CREATED);
         
     }

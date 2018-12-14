@@ -7,13 +7,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity
 public class ItensCarrinho {
     private Long id;
-    private Produto produtos;
+    private Produto produto;
     private double quantidade;
     private Carrinho carrinho;
 
@@ -28,15 +27,15 @@ public class ItensCarrinho {
         this.id = id;
     }
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name="produto")
-    public Produto getProdutos() {
-        return produtos;
+    @ManyToOne()
+    @JoinColumn(name="produto_id")
+    public Produto getProduto() {
+        return produto;
     }
 
 
-    public void setProdutos(Produto produtos) {
-        this.produtos = produtos;
+    public void setProduto(Produto produto) {
+        this.produto = produto;
     }
 
 
@@ -50,7 +49,7 @@ public class ItensCarrinho {
     }
 
     @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name="carrinho")
+    @JoinColumn(name="carrinho_id")
     public Carrinho getCarrinho() {
         return carrinho;
     }

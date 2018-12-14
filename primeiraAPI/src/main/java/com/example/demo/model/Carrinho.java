@@ -19,9 +19,10 @@ public class Carrinho {
     private Date expireTime;
     private Cliente cliente;
     
-    
-    @OneToMany(cascade = CascadeType.PERSIST)
-    @JoinColumn(name="itens")
+    //CascadeType.REMOVE, apaga todos os itens do carrinho, quando o carrinho for apagado. Apagando o pai os filhos somem.
+    //mappedBY indica qual o lado não dominante da relação. O contrário de JoinColumn
+    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "carrinho")
+    //@JoinColumn(name="id_itens") Nao pode haver JoinColumn, pois n se pode criar uma coluna na tabela mestre de uma relação one to many
     public Collection<ItensCarrinho> getItens() {
         return itens;
     }
@@ -44,7 +45,7 @@ public class Carrinho {
     }
 
     @OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name="cliente")
+    @JoinColumn(name="cliente_id", unique = true)
     public Cliente getCliente() {
         return cliente;
     }

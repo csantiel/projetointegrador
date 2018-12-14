@@ -3,6 +3,7 @@ package com.example.demo.model;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,7 +11,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Venda {
@@ -18,11 +22,8 @@ public class Venda {
     private Date data;
     private Cliente cliente;
     private double valor;
-    private Collection<ItensVenda> itensVenda;
+    private List<ItensVenda> itensVenda;
     
-    
-    
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
@@ -34,24 +35,24 @@ public class Venda {
         this.id = id;
     }
 
-    @ManyToMany(cascade = CascadeType.PERSIST)
-    @JoinColumn(name="itensVenda")
-    public Collection<ItensVenda> getItensVenda() {
+    //@OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE}, mappedBy = "venda")
+    @OneToMany()
+    @JoinColumn(name="venda_id")
+    public List<ItensVenda> getItensVenda() {
         return itensVenda;
     }
 
 
-    public void setItensVenda(Collection<ItensVenda> itensVenda) {
+    public void setItensVenda(List<ItensVenda> itensVenda) {
         this.itensVenda = itensVenda;
     }
 
-    @OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name="cliente")
+    @OneToOne
     public Cliente getCliente() {
         return cliente;
     }
 
-
+    @Temporal(TemporalType.TIMESTAMP)
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }

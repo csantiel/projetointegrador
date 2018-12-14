@@ -21,9 +21,7 @@ public class CarrinhoController {
     
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity cadastrarCarrinho(@RequestBody Carrinho car) {
-        
         carrinhoService.cadastrarCarrinho(car);
-        
         return new ResponseEntity(HttpStatus.CREATED);
         
     }
@@ -42,4 +40,6 @@ public class CarrinhoController {
     void mostraCarrinho(Long id) {
         carrinhoService.buscaCarrinho(id);
     }
+    
+    
 }

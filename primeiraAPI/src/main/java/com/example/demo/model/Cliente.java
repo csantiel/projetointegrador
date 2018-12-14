@@ -39,7 +39,7 @@ public class Cliente {
     }
 
     @OneToMany(cascade = CascadeType.PERSIST)
-    @JoinColumn(name="cliente")
+    @JoinColumn(name="id_cliente")
     public Collection<Telefone> getListaTelefone() {
         return listaTelefone;
     }
@@ -48,7 +48,7 @@ public class Cliente {
         this.listaTelefone = telefone;
     }
 
-    @Column(unique=true)
+    @Column(unique=true, nullable = false)
     public String getEmail() {
         return email;
     }

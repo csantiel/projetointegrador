@@ -35,7 +35,7 @@ public class ItensVendaController {
     }
     
     @RequestMapping(method = RequestMethod.GET)
-    void mostraItensCarrinho(long id) {
+    void mostraItensVenda(long id) {
        // itensCarrinhoService.buscaItemCarrinho(id);
     }
 }

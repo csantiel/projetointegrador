@@ -1,6 +1,7 @@
 
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class ItensVenda {
@@ -38,9 +40,10 @@ public class ItensVenda {
     public void setCusto(double custo) {
         this.custo = custo;
     }
-
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name="produto")
+    
+    @JsonIgnore
+    @ManyToOne()
+    //@JoinColumn(name="produto_id")
     public Produto getProduto() {
         return produto;
     }
@@ -70,8 +73,8 @@ public class ItensVenda {
         this.valor = valor;
     }
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name="venda")
+    @ManyToOne()
+    @JoinColumn(name="venda_id")
     public Venda getVenda() {
         return venda;
     }
@@ -80,8 +83,4 @@ public class ItensVenda {
     public void setVenda(Venda venda) {
         this.venda = venda;
     }
-    
-    
-    
-    
 }

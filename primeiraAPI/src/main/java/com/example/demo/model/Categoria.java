@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -37,8 +38,7 @@ public class Categoria {
         this.nome = nome;
     }
 
-    @OneToMany(cascade = CascadeType.PERSIST)
-    @JoinColumn(name="produtos")
+    @ManyToMany()
     public Collection<Produto> getProdutos() {
         return produtos;
     }
