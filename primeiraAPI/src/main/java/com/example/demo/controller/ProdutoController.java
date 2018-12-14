@@ -39,7 +39,8 @@ public class ProdutoController {
     }
     
     @RequestMapping(method = RequestMethod.GET)
-    void mostraProduto(Long id) {
-        produtoService.buscaProduto(id);
+    //Alterado para retorno do tipo Produto para ser usado no ItensCarrinho, para checar estoque.
+    Produto mostraProduto(Long id) {
+        return produtoService.buscaProduto(id);
     }
 }

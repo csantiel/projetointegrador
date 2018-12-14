@@ -2,7 +2,11 @@ package com.example.demo.controller;
 
 import com.example.demo.model.Carrinho;
 import com.example.demo.services.CarrinhoService;
+import io.jsonwebtoken.JwtBuilder;
+import io.jsonwebtoken.Jwts;
+import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +26,19 @@ public class CarrinhoController {
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity cadastrarCarrinho(@RequestBody Carrinho car) {
         carrinhoService.cadastrarCarrinho(car);
-        return new ResponseEntity(HttpStatus.CREATED);
+        
+        
+        JwtBuilder jwtBuilder = Jwts.builder();
+        jwtBuilder.setSubject("car_id: "+car.getId()+" cli_id: "+car.getCliente().getId());
+        jwtBuilder.setExpiration(new Date(System.currentTimeMillis()+10*60*1000));
+        jwtBuilder.signWith(Autenticacao.key);
+        
+        String token = jwtBuilder.compact();
+        
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Authorization", "Bearer "+token);
+        
+       return new ResponseEntity<>(headers, HttpStatus.CREATED);
         
     }
     
@@ -40,6 +56,4 @@ public class CarrinhoController {
     void mostraCarrinho(Long id) {
         carrinhoService.buscaCarrinho(id);
     }
-    
-    
 }

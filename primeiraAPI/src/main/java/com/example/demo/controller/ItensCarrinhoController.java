@@ -3,6 +3,7 @@ package com.example.demo.controller;
 
 import com.example.demo.model.Cliente;
 import com.example.demo.model.ItensCarrinho;
+import com.example.demo.model.Produto;
 import com.example.demo.services.ClienteService;
 import com.example.demo.services.ItensCarrinhoService;
 import io.jsonwebtoken.JwtBuilder;
@@ -28,10 +29,17 @@ public class ItensCarrinhoController {
     
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity cadastrarItensCarrinho(@RequestBody ItensCarrinho ic) {
+        
+        ProdutoController pc = new ProdutoController();
+        
+        if(pc.mostraProduto(ic.getId()).getQuantidade()>=1){
         itensCarrinhoService.cadastrarItemCarrinho(ic);
         
         return new ResponseEntity(HttpStatus.CREATED);
-        
+        }else{
+            //
+            return new ResponseEntity(HttpStatus.FORBIDDEN);
+        }
     }
     
     @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
@@ -40,8 +48,8 @@ public class ItensCarrinhoController {
     }
     
     @RequestMapping(method = RequestMethod.PUT)
-    void editarItensCarrinho() {
-        System.out.println("edita");
+    void editarItensCarrinho(ItensCarrinho ic) {
+        itensCarrinhoService.editarItemCarrinho(ic);
     }
     
     @RequestMapping(method = RequestMethod.GET)

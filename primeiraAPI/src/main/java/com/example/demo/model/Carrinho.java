@@ -3,6 +3,7 @@ package com.example.demo.model;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,7 +16,7 @@ import javax.persistence.OneToOne;
 @Entity
 public class Carrinho {
     private long id;
-    private Collection<ItensCarrinho> itens;
+    private List<ItensCarrinho> itens;
     private Date expireTime;
     private Cliente cliente;
     
@@ -23,12 +24,12 @@ public class Carrinho {
     //mappedBY indica qual o lado não dominante da relação. O contrário de JoinColumn
     @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "carrinho")
     //@JoinColumn(name="id_itens") Nao pode haver JoinColumn, pois n se pode criar uma coluna na tabela mestre de uma relação one to many
-    public Collection<ItensCarrinho> getItens() {
+    public List<ItensCarrinho> getItens() {
         return itens;
     }
 
 
-    public void setItens(Collection<ItensCarrinho> itens) {
+    public void setItens(List<ItensCarrinho> itens) {
         this.itens = itens;
     }
 
