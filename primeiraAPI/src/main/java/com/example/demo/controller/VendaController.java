@@ -30,7 +30,7 @@ public class VendaController {
     
     @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
     void removerVenda(@PathVariable Long id) {
-        System.out.println("apaga venda" + id);
+        //System.out.println("apaga venda" + id);
     }
     
     @RequestMapping(method = RequestMethod.PUT)

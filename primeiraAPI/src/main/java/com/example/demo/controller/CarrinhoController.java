@@ -25,18 +25,19 @@ public class CarrinhoController {
     
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity cadastrarCarrinho(@RequestBody Carrinho car) {
-        carrinhoService.cadastrarCarrinho(car);
-        
         
         JwtBuilder jwtBuilder = Jwts.builder();
-        jwtBuilder.setSubject("car_id: "+car.getId()+" cli_id: "+car.getCliente().getId());
-        jwtBuilder.setExpiration(new Date(System.currentTimeMillis()+10*60*1000));
+        jwtBuilder.setSubject("carrinho_id "+car.getId()+" cliente_id "+car.getCliente().getId());
+        // sobre o tempo de expiração: dias * horas * min * sec
+        jwtBuilder.setExpiration(new Date(System.currentTimeMillis()+10*24*60*60*1000));
         jwtBuilder.signWith(Autenticacao.key);
         
         String token = jwtBuilder.compact();
         
         HttpHeaders headers = new HttpHeaders();
         headers.add("Authorization", "Bearer "+token);
+        
+        carrinhoService.cadastrarCarrinho(car);
         
        return new ResponseEntity<>(headers, HttpStatus.CREATED);
         

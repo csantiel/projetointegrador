@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.model.Carrinho;
 import com.example.demo.model.Cliente;
 import com.example.demo.services.ClienteService;
 import io.jsonwebtoken.JwtBuilder;
@@ -48,6 +49,12 @@ public class ClienteController {
         
         HttpHeaders headers = new HttpHeaders();
         headers.add("Authorization", "Bearer "+token);
+        
+        /* ------------------Verificar vida do carrinho------------------*/
+        CarrinhoController cc = new CarrinhoController();
+        Carrinho c = new Carrinho();
+        
+        c.getCliente().equals(cli);
         
        return new ResponseEntity<>(headers, HttpStatus.OK);
     }
